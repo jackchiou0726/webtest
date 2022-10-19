@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Javascript Foreach</h1>
+
+    <script>
+        const people = 
+        [{
+            name:'小明',
+            order:'鍋燒意麵',
+            price:80
+        },
+        {
+            name:'小華',
+            order:'牛肉麵',
+            price:120
+        },
+        {
+            name:'美晴',
+            order:'滷味切盤',
+            price:40
+        },
+        {
+            name:'Jack',
+            order:'大麻醬乾麵',
+            price:60
+        }];
+
+        // 1. 請一一列出每個人的訂單
+        people.forEach(function(obj,key){
+            //console.log(obj,key);
+        });
+
+        // 2. 小明看到今天有打八折！！，請將所有訂單新增一個新價格，金額是 80%
+
+       
+        // (1)
+            //const newOrders = [];
+            // people.forEach(function(obj, key){
+            //     newOrders[key] = {
+            //         ...obj,
+            //         newPrice : obj.price * 0.8,
+            //     }
+            // });
+            // console.log(newOrders);
+
+        // (2)Map1
+        // const newOrders = people.map(function(obj, key){
+        //     return{
+        //         ...obj,
+        //         newPrice: obj.price * 0.8
+        //     }
+        // });
+        // console.log(newOrders);
+
+        const newOrders = people.map((item,index) =>({
+                ...item,
+                newPrice: item.price * 0.8
+        }));
+        console.log(newOrders);
+
+        // (3)Map2
+        // const newOrders = people.map((item, index)=>({
+        //     ...item,
+        //     newPrice: item.price * 0.8
+        // }));
+        // console.log(newOrders);
+
+        // 3. 老闆說，今天疫情沒有八折啦，不過 80 元的可以給滷蛋
+
+        // (1)
+        // const newOrders2 = [];
+        // people.forEach(function(item, index){
+        //     if(item.price >= 80){
+        //         newOrders2.push(item)
+        //     }
+        // });
+        // console.log(newOrders2);
+
+        // (2)filter
+        // const newOrders2 = people.filter(function(item, index){
+        //     return item.price >= 80;
+        // });
+        
+        // (3)filter
+        // const newOrders2 = people.filter((item) => item.price >=80);
+
+        // console.log(newOrders2);
+
+        // 4. 過一段時間後，老闆發現牛肉沒了，把點牛肉麵的換成牛肉湯麵
+        // (1)foreach
+        // let index = -1;
+        // people.forEach(function(obj, key) { 
+        //     if(obj.order === '牛肉麵'){
+        //         index = key;
+        //     }
+        //  });
+        //  people[index].order = '牛肉湯麵';
+        //  console.log(people[index]);
+
+        // (2)findindex
+        // const index = people.findIndex(function(item){
+        //     return item.order === '牛肉麵';
+        // });
+        // people[index].order = '牛肉湯麵';
+        // console.log(people[index]);
+
+        // (3)findindex
+        // const index = people.findIndex((item) => item.order === '牛肉麵');
+        // people[index].order = '牛肉湯麵';
+        // console.log(people[index]);
+
+
+        // 5. 老闆說 POS 機壞了，麻煩幫忙出一下 LI 結構，方便列印發
+
+        // (1)forEach
+        //  let htmlTemplate ='';
+        //  people.forEach(function(obj, key){
+        //     htmlTemplate =  htmlTemplate + `<li>
+        //         ${obj.order}, ${obj.price}
+        //         </li>`
+        //  });
+        //  console.log(htmlTemplate);
+
+        // (2)map
+        // const htmlTemplate = people.map(function(item, index){
+        //     return `<li>
+        //         ${item.order},${item.price}
+        //         </li>`
+        // }).join('');
+        // console.log(htmlTemplate);
+
+        // (3)map
+        
+        // const htmlTemplate = people.map((item, index) => `<li>
+        //     ${item.order},${item.price}
+        //     </li>`).join('');
+        // console.log(htmlTemplate);
+
+
+
+        // 6. 老闆要收錢了，請問老闆應該收多少錢
+
+        // (1)
+        // let total = 0;
+        // people.forEach(function(obj, key){
+        //     total += obj.price;
+        // });
+        //  console.log(total);
+        
+        // (2)
+        // const total = people.reduce(function(acc,cur){
+        //     return acc + cur.price
+        // }, 0);
+        // console.log(total);
+
+        // (3)
+
+        // const total = people.reduce((acc, cur) => acc+cur.price , 0);
+        // console.log(total);
+
+        // 7. 今天誰吃最貴！請排序所有的金額
+        
+        const peoeleSort = people.sort((a,b) => {
+            return b.price - a.price
+        });
+
+        console.log(peoeleSort);
+    </script>
+</body>
+</html>
